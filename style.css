@@ -1,0 +1,285 @@
+/* Служебное */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Фон страницы */
+body {
+  min-height: 100vh;
+  font-family: 'Quicksand', system-ui, sans-serif;
+  color: #6b4a58;
+  background: linear-gradient(160deg, #ffe4ec 0%, #fff5f8 45%, #f4e8ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Карточка */
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 28px;
+  padding: 32px 28px 36px;
+  box-shadow:
+    0 20px 40px rgba(255, 158, 196, 0.25),
+    0 4px 12px rgba(255, 182, 193, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Тексты */
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #ff7fb0;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #b48aa3;
+  margin-bottom: 24px;
+}
+
+/* Существо из сладкой ваты */
+.creature {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 22px;
+}
+
+.creature-body {
+  position: relative;
+  width: 140px;
+  height: 130px;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #ffd6e2 0%,
+    #ffb6c1 45%,
+    #ff9ec4 100%
+  );
+  border-radius: 50% 52% 48% 50% / 50% 48% 52% 50%;
+  box-shadow:
+    0 12px 30px rgba(255, 158, 196, 0.45),
+    inset -8px -12px 24px rgba(255, 127, 176, 0.25),
+    inset 6px 8px 18px rgba(255, 255, 255, 0.6);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Глаза */
+.eye {
+  position: absolute;
+  top: 52px;
+  width: 12px;
+  height: 16px;
+  background: #6b4a58;
+  border-radius: 50%;
+}
+
+.eye {
+  transition: height 0.12s ease, top 0.12s ease;
+}
+
+.creature.blinking .eye {
+  height: 2px;
+  top: 59px;
+}
+
+.eye-left  { left: 42px; }
+.eye-right { right: 42px; }
+
+/* Блик в глазу */
+.eye::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transition: opacity 0.1s ease;
+}
+
+.creature.blinking .eye::after {
+  opacity: 0;
+}
+
+/* Щёчки */
+.cheek {
+  position: absolute;
+  top: 78px;
+  width: 18px;
+  height: 12px;
+  background: rgba(255, 127, 176, 0.4);
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.cheek-left  { left: 24px; }
+.cheek-right { right: 24px; }
+
+/* Рот */
+.mouth {
+  position: absolute;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-bottom: 3px solid #6b4a58;
+  border-radius: 0 0 20px 20px;
+}
+
+.mouth {
+  transition:
+    top 0.2s ease,
+    width 0.2s ease,
+    height 0.2s ease,
+    background 0.2s ease,
+    border-radius 0.2s ease,
+    border-bottom-color 0.2s ease;
+}
+
+.creature.eating .mouth {
+  top: 78px;
+  width: 14px;
+  height: 14px;
+  background: #6b4a58;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+}
+
+/* Кнопки */
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb6c1, #ff9ec4);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 6px 16px rgba(255, 158, 196, 0.4);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 158, 196, 0.5);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button.small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* Форма кормления */
+.feed-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 2px solid #ffd1dc;
+  background: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  color: #6b4a58;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: #d7b3c2;
+}
+
+.input:focus {
+  border-color: #ff9ec4;
+  box-shadow: 0 0 0 4px rgba(255, 158, 196, 0.2);
+}
+
+/* Панель с дверцей */
+.door-panel {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 16px;
+  border: 1px solid #ffe4ec;
+}
+
+.door-title {
+  font-size: 18px;
+  color: #ff7fb0;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Список записей */
+.list {
+  list-style: none;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list li {
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #ffe4ec;
+  font-size: 15px;
+  color: #6b4a58;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.15);
+  word-break: break-word;
+}
+
+/* Пусто и ошибка */
+.empty {
+  text-align: center;
+  color: #b48aa3;
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+.error {
+  color: #d6336c;
+  background: #ffe4ec;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: center;
+}
