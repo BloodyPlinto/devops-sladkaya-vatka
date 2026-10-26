@@ -56,3 +56,21 @@ Backend запускается на `http://localhost:5000`.
 ## 4. Запустить frontend
 
 Открыть `index.html` в браузере
+
+
+## 5. Запуск через Docker Compose
+
+Убедитесь, что установлен Docker Desktop.
+В корневой папке проекта для запуска
+всего стека воспользуйтесь одной командой:
+
+```bash
+docker compose up -d
+```
+Откройте в браузере: http://localhost:8080
+
+Чтобы остановить стек:
+
+```bash
+docker compose down
+```
