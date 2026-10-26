@@ -8,6 +8,13 @@ project/
 ├── style.css
 ├── app.js
 ├── README.md
+├── docker-compose.yml
+├── .dockerignore
+├── .gitignore
+├── Dockerfile.bad
+├── Dockerfile.good
+├── Dockerfile.frontend
+├── nginx.conf
 └── backend/
     ├── app.py
     └── requirements.txt
