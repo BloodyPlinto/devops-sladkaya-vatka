@@ -1,5 +1,8 @@
 # Сладкая ватка — запуск
 
+## Ссылка на отчет по лабораторной работе №2
+https://github.com/BloodyPlinto/devops-sladkaya-vatka/blob/main/DevOps2.pdf
+
 ## Структура
 
 ```text
