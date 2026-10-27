@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сладкая ватка</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="card">
+    <h1 class="title">Сладкая ватка</h1>
+
+    <p class="subtitle">Облачко, которое ест твои записи</p>
+    <div id="creature" class="creature" aria-hidden="true">
+      <div class="creature-body">
+          <div class="eye eye-left"></div>
+          <div class="eye eye-right"></div>
+          <div class="cheek cheek-left"></div>
+          <div class="cheek cheek-right"></div>
+          <div class="mouth"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="peekBtn" class="button">Загляни в меня</button>
+      <button id="feedBtn" class="button">Покорми меня</button>
+    </div>
+
+    <form id="feedForm" class="feed-form" hidden>
+      <input
+        id="feedInput"
+        type="text"
+        class="input"
+        placeholder="Скажи что-нибудь..."
+        maxlength="200"
+      >
+      <button type="submit" class="button small">Скормить</button>
+    </form>
+
+    <section id="doorPanel" class="door-panel" hidden>
+      <h2 class="door-title">Внутри облачка</h2>
+      <ul id="list" class="list"></ul>
+      <p id="empty" class="empty" hidden>Пока пусто </p>
+      <button id="closeBtn" class="button small">Закрыть</button>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
