@@ -1,19 +1,33 @@
 # Сладкая ватка — запуск
 
-## Ссылка на отчет по лабораторной работе №2
-https://github.com/BloodyPlinto/devops-sladkaya-vatka/blob/main/DevOps2.pdf
+## Ссылка на отчет по лабораторной работе №0
 
-## Структура
+## Ссылка на отчет по лабораторной работе №2
+https://github.com/BloodyPlinto/devops-sladkaya-vatka/blob/main/lab2/DevOps2.pdf
+
+## Структура лабораторной 0
 
 ```text
-project/
+lab0/
 ├── index.html
 ├── style.css
 ├── app.js
-├── README.md
+├── DevOps0.pdf
+└── backend/
+    ├── app.py
+    └── requirements.txt
+```
+
+## Структура лабораторной 2
+
+```text
+lab2/
+├── index.html
+├── style.css
+├── app.js
+├── DevOps2.pdf
 ├── docker-compose.yml
 ├── .dockerignore
-├── .gitignore
 ├── Dockerfile.bad
 ├── Dockerfile.good
 ├── Dockerfile.frontend
