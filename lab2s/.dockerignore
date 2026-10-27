@@ -1,0 +1,10 @@
+# Скрыть служебные папки, мусор, настройки
+.git
+.idea
+__pycache__
+*.pyc
+venv/
+README.md
+Dockerfile*
+.dockerignore
+.gitignore

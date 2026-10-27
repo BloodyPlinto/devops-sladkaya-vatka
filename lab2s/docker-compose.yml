@@ -1,0 +1,62 @@
+services:
+  # 1. База данных
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sladkayavatka
+      POSTGRES_DB: vatka_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d vatka_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Бэкенд (хороший образ)
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.good
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://postgres:sladkayavatka@db:5432/vatka_db
+    networks:
+      - backend-net
+      - frontend-net
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+
+  # 3. Фронтенд (Nginx)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - "8080:80"  # В браузере открыть localhost:8080
+    networks:
+      - frontend-net
+    depends_on:
+      - backend
+
+# Сети (для изоляции)
+networks:
+  frontend-net:
+    driver: bridge
+  backend-net:
+    driver: bridge
+
+# Том для сохранения данных БД
+volumes:
+  postgres_data:

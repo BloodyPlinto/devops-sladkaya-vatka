@@ -1,0 +1,43 @@
+# Хороший Dockerfile
+# Исправляет все bad practices
+
+# Исправление 1: фиксированная версия slim-образа
+FROM python:3.12-slim AS builder
+
+# Создаем рабочую директорию
+WORKDIR /app
+
+# Исправление 2: сначала копируем только requirements.txt
+COPY backend/requirements.txt .
+
+# Ставим зависимости, кеш pip отключаем, чтобы не тащить мусор.
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+# Начинаем с нуля.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Забираем готовые библиотеки из первого этапа (builder)
+COPY --from=builder /install /usr/local
+
+# Теперь копируем сам код приложения.
+# Любая правка этого файла не сломает кеш установки библиотек
+COPY backend/app.py .
+
+# Исправление 3: создаем отдельного пользователя и переключаемся на него
+# Теперь приложение не работает от root.
+RUN useradd -m dolcheuser
+USER dolcheuser
+
+# Открываем порт
+EXPOSE 5000
+
+# Исправление 4: добавляем проверку здоровья (HEALTHCHECK)
+# Если Flask отвечает, скрипт завершится с кодом 0, и Docker поймет, что все работает.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/items')" || exit 1
+
+# Исправление предупреждения: используем квадратные скобки,
+# чтобы сигналы остановки доходили прямо до Python.
+CMD ["python3", "app.py"]
