@@ -5,6 +5,9 @@
 ## Ссылка на отчет по лабораторной работе №2
 https://github.com/BloodyPlinto/devops-sladkaya-vatka/blob/main/lab2/DevOps2.pdf
 
+## Ссылка на отчет по лабораторной работе №2 star
+https://github.com/BloodyPlinto/devops-sladkaya-vatka/blob/main/lab2s/DevOps2s.pdf
+
 ## Структура лабораторной 0
 
 ```text
